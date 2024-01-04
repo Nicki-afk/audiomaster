@@ -124,11 +124,14 @@ def extract_audio_from_video(file_name):
 def main_reply_markup():
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     youtube_key = types.KeyboardButton("YouTube 🔴")
+    tik_tok_key = types.KeyboardButton("TikTok ⚫")
+    shazam_key = types.KeyboardButton("Shazam ⚡")
     my_key = types.KeyboardButton("My Video ▶️")
     other_video_key = types.KeyboardButton("Other Hosting 🔘")
 
-    keyboard.row(youtube_key , my_key )
-    keyboard.row(other_video_key)
+    keyboard.row(youtube_key , tik_tok_key)
+    keyboard.row(other_video_key , my_key)
+    keyboard.row(shazam_key)
 
     return keyboard
 
