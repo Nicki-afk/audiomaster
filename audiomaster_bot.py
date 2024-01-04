@@ -49,30 +49,44 @@ load_properties()
 bot = telebot.TeleBot(token=telegram_token , threaded=True)
 
 
-@bot.message_handler(content_types=['text'] )
-def get_text_messages(message):
-        
+@bot.message_handler(content_types=["text"])
+def start(message):    
+    if message.text == "/start":
 
-        if message.text == "/start":
-
-            logging.info("Input command /start")
+       logging.info("Input command /start")
       
-            bot.send_message(chat_id=message.from_user.id , text=hello_text , reply_markup=main_reply_markup() , parse_mode="Markdown")
-        elif message.text == "YouTube 🔴":
-               logging.info("input commmand 'YouTube'")
-               bot.send_message(message.from_user.id , "🎶 Отлично! ты выбрал функцию YouTube. Теперь просто отправь мне ссылку на видео, и я преобразую его в аудиоформат! 📹➡️🎧")  
-               bot.register_next_step_handler(message , extract_from_youtube)
-        elif message.text == "My Video ▶️" : 
-               logging.info("input command 'My Video'")
-               bot.send_message(message.from_user.id , "🚧 Извините, эта функция в данный момент находится в разработке и скоро будет доступна. Спасибо за терпение и поддержку! 👷‍♂️🔧")  
-        elif message.text == "Other Hosting 🔘":
-            logging.info("input command 'Other Hosting'")
-            bot.send_message(message.from_user.id , "🚧 Извините, эта функция в данный момент находится в разработке и скоро будет доступна. Спасибо за терпение и поддержку! 👷‍♂️🔧")  
-        else :
-           logging.info("input 'invalid command'")
-           bot.send_message(message.from_user.id , "🤔 Кажется, я не понимаю эту команду. Пожалуйста, проверьте введенные данные или воспользуйтесь меню помощи, чтобы узнать о доступных командах. 📚")  
+       bot.send_message(chat_id=message.from_user.id , text=hello_text , reply_markup=main_reply_markup() , parse_mode="Markdown")
+    elif message.text == "YouTube 🔴":
+        logging.info("input commmand 'YouTube'")
+        bot.send_message(message.from_user.id , "🎶 Отлично! ты выбрал функцию YouTube. Теперь просто отправь мне ссылку на видео, и я преобразую его в аудиоформат! 📹➡️🎧")  
+        bot.register_next_step_handler(message , extract_from_youtube)
+    elif message.text == "My Video ▶️" or message.text == "Other Hosting 🔘" or message.text == "TikTok ⚫" or message.text == "Shazam ⚡" : 
+         bot.send_message(message.from_user.id , "🚧 Извините, эта функция в данный момент находится в разработке и скоро будет доступна. Спасибо за терпение и поддержку! 👷‍♂️🔧")       
+    else :
+        logging.info("input 'invalid command'")
+        bot.send_message(message.from_user.id , "🤔 Кажется, я не понимаю эту команду. Пожалуйста, проверьте введенные данные или воспользуйтесь меню помощи, чтобы узнать о доступных командах. 📚")  
 
-               
+ 
+def tiktok(message) : 
+   pass
+   
+
+
+def youtube(message) : 
+    logging.info("input commmand 'YouTube'")
+    bot.send_message(message.from_user.id , "🎶 Отлично! ты выбрал функцию YouTube. Теперь просто отправь мне ссылку на видео, и я преобразую его в аудиоформат! 📹➡️🎧")  
+    bot.register_next_step_handler(message , extract_from_youtube)
+    
+
+
+def my_video(message) : 
+    pass
+
+def shazam(message):
+   pass
+
+def other_hosting(message) : 
+    pass
                              
                     
 
